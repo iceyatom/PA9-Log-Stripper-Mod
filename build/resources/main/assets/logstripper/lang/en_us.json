@@ -1,10 +1,8 @@
 {
   "logstripper.button.narration": "Strip logs in inventory",
   "logstripper.tooltip.title": "Strip Logs",
-  "logstripper.tooltip.axe_line": "Axe: %s (%s uses left)",
-  "logstripper.tooltip.will_strip": "Will strip %s log(s)",
-  "logstripper.tooltip.will_strip_atleast": "Will strip at least %s log(s)",
+  "logstripper.tooltip.axe": "Axe: %s",
+  "logstripper.tooltip.log_row": "%s: %s",
   "logstripper.tooltip.no_axe": "Strip Logs\nNo usable axe in inventory",
-  "logstripper.tooltip.no_logs": "Strip Logs\nNo strippable logs in inventory",
-  "logstripper.tooltip.unlimited": "unlimited"
+  "logstripper.tooltip.no_logs": "Strip Logs\nNo strippable logs in inventory"
 }

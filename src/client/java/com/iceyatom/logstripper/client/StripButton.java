@@ -99,33 +99,32 @@ public class StripButton extends AbstractButton {
 			return;
 		}
 
-		ItemStack stack = axe.stack();
-		int uses = LogStripHelper.remainingUses(stack);
-		boolean free = player.hasInfiniteMaterials() || uses == Integer.MAX_VALUE;
-
-		Component durability;
-		int willStrip;
-		boolean atLeast = false;
-		if (free) {
-			durability = Component.translatable("logstripper.tooltip.unlimited");
-			willStrip = logs;
-		} else {
-			// preserve_axe holds back the final durability point, lowering the guaranteed count by one.
-			int reserve = config.preserveAxe ? 1 : 0;
-			int capacity = Math.max(0, uses - reserve);
-			willStrip = Math.min(capacity, logs);
-			durability = Component.literal(String.valueOf(uses));
-			// When durability is the binding limit, Unbreaking makes the real count a floor, not exact.
-			atLeast = capacity < logs && LogStripHelper.unbreakingLevel(stack) > 0;
-		}
-
+		// Target axe, then one row per log type in the order they will be stripped.
 		MutableComponent tooltip = Component.translatable("logstripper.tooltip.title")
 				.append(Component.literal("\n"))
-				.append(Component.translatable("logstripper.tooltip.axe_line", stack.getItemName(), durability))
-				.append(Component.literal("\n"))
-				.append(Component.translatable(
-						atLeast ? "logstripper.tooltip.will_strip_atleast" : "logstripper.tooltip.will_strip",
-						willStrip));
+				.append(Component.translatable("logstripper.tooltip.axe", axe.stack().getItemName()));
+		for (LogStripHelper.LogGroup group : LogStripHelper.strippableBreakdown(player.getInventory())) {
+			ItemStack representative = new ItemStack(group.item());
+			tooltip.append(Component.literal("\n"))
+					.append(Component.translatable("logstripper.tooltip.log_row",
+							representative.getItemName(),
+							Component.literal(formatCount(group.count(), representative.getMaxStackSize()))));
+		}
 		setTooltip(Tooltip.create(tooltip));
+	}
+
+	/** Formats a count as a stack breakdown, e.g. 178 with stack size 64 -> "2 * 64 + 50 (178)". */
+	private static String formatCount(int count, int maxStackSize) {
+		int fullStacks = count / maxStackSize;
+		int remainder = count % maxStackSize;
+		if (fullStacks == 0) {
+			return String.valueOf(remainder);
+		}
+		StringBuilder sb = new StringBuilder();
+		sb.append(fullStacks).append(" * ").append(maxStackSize);
+		if (remainder > 0) {
+			sb.append(" + ").append(remainder);
+		}
+		return sb.append(" (").append(count).append(")").toString();
 	}
 }

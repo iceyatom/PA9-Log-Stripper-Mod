@@ -10,7 +10,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.Enchantments;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * All scanning, conversion, and durability logic for the strip operation (Section 7.3).
@@ -100,18 +104,26 @@ public final class LogStripHelper {
 		return stack.getMaxDamage() - stack.getDamageValue();
 	}
 
+	/** One strippable log type and its total count, for the tooltip breakdown. */
+	public record LogGroup(Item item, int count) {
+	}
+
 	/**
-	 * Level of the Unbreaking enchantment on the stack, or 0 if absent. Used only to phrase the
-	 * tooltip preview: with Unbreaking, durability is consumed probabilistically, so the raw
-	 * remaining-uses count is a guaranteed floor rather than an exact strip count.
+	 * Strippable logs grouped by type, in the order the strip operation first encounters them
+	 * while scanning slots 0-35. Feeds the tooltip's per-type breakdown.
 	 */
-	public static int unbreakingLevel(ItemStack stack) {
-		for (var entry : stack.getEnchantments().entrySet()) {
-			if (entry.getKey().is(Enchantments.UNBREAKING)) {
-				return entry.getIntValue();
+	public static List<LogGroup> strippableBreakdown(Inventory inventory) {
+		// LinkedHashMap keeps first-seen (i.e. strip) order across multiple stacks of one type.
+		Map<Item, Integer> counts = new LinkedHashMap<>();
+		for (int slot = 0; slot < SCAN_SLOTS; slot++) {
+			ItemStack stack = inventory.getItem(slot);
+			if (!stack.isEmpty() && StrippableRegistry.isStrippable(stack.getItem())) {
+				counts.merge(stack.getItem(), stack.getCount(), Integer::sum);
 			}
 		}
-		return 0;
+		List<LogGroup> result = new ArrayList<>(counts.size());
+		counts.forEach((item, count) -> result.add(new LogGroup(item, count)));
+		return result;
 	}
 
 	/** Total count of strippable logs across slots 0-35 (used for FR-02/FR-03). */

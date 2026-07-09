@@ -2,9 +2,12 @@
   "schemaVersion": 1,
   "id": "logstripper",
   "version": "1.0.0",
-  "name": "LogStripper",
-  "description": "Bulk-strip logs directly from your inventory using an equipped axe's durability. Singleplayer-focused; the mod must be present on the logical server.",
-  "authors": ["iceyatom"],
+  "name": "PA9 Log Stripper",
+  "description": "Bulk-strip logs directly from your inventory using an equipped axe's durability. View the target logs to be stripped and only ever use axe down to 1 durability.",
+  "authors": ["PersonalAtom9"],
+  "contact": {
+    "homepage": "https://www.youtube.com/@PersonalAtom9"
+  },
   "license": "MIT",
   "environment": "*",
   "entrypoints": {

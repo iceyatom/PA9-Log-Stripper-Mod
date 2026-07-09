@@ -1,0 +1,7 @@
+{
+  "logstripper.button.narration": "Strip logs in inventory",
+  "logstripper.tooltip.preview": "Strip Logs\nAxe: %s (%s uses left)\nWill strip %s log(s)",
+  "logstripper.tooltip.no_axe": "Strip Logs\nNo usable axe in inventory",
+  "logstripper.tooltip.no_logs": "Strip Logs\nNo strippable logs in inventory",
+  "logstripper.tooltip.unlimited": "unlimited"
+}

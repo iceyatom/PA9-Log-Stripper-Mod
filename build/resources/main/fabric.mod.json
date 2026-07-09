@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "logstripper",
+  "version": "1.0.0",
+  "name": "LogStripper",
+  "description": "Bulk-strip logs directly from your inventory using an equipped axe's durability. Singleplayer-focused; the mod must be present on the logical server.",
+  "authors": ["iceyatom"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.iceyatom.logstripper.LogStripper"],
+    "client": ["com.iceyatom.logstripper.client.LogStripperClient"]
+  },
+  "mixins": [
+    "logstripper.mixins.json",
+    {
+      "config": "logstripper.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "fabric-api": ">=0.154.2",
+    "minecraft": "~26.2"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}

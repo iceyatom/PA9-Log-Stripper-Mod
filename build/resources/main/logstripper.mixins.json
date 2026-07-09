@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "com.iceyatom.logstripper.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "AxeItemAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

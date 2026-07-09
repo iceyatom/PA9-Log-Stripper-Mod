@@ -1,0 +1,22 @@
+# LogStripper configuration
+
+# Master toggle - disables the button and all mod behavior when false.
+enabled = true
+
+# MAIN_HAND_FIRST | HIGHEST_DURABILITY - which axe is chosen when more than one is available.
+axe_selection_strategy = "MAIN_HAND_FIRST"
+
+# Show the pre-click outcome tooltip.
+show_tooltip_preview = true
+
+# Play the axe-strip sound once per operation.
+play_sound_on_complete = true
+
+# Briefly flash slots that changed as a result of the operation.
+highlight_changed_slots = true
+
+# How long the slot-flash effect lasts, in game ticks. Range: 5-100.
+highlight_duration_ticks = 20
+
+# Write verbose scan/conversion diagnostics to the Fabric log. Development use only.
+debug_logging = false

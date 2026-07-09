@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "com.iceyatom.logstripper.mixin.client",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "AbstractContainerScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

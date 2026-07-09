@@ -7,7 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerListener;
@@ -22,10 +22,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Injects the strip button into every container screen that shows the player's own
- * inventory grid (FR-01), covering {@code InventoryScreen}, chests, barrels, shulker boxes,
- * etc. with a single mixin by targeting only methods declared on
- * {@link AbstractContainerScreen} itself (Section 7.1).
+ * Injects the strip button into the standard survival player inventory ({@code InventoryScreen})
+ * only - not chests, barrels, shulker boxes, or the creative screen. It mixes into
+ * {@link AbstractContainerScreen} (targeting only methods declared there, Section 7.1) but the
+ * {@code init} handler bails out unless the concrete screen is an {@code InventoryScreen}.
  *
  * <p>{@code init} (TAIL): after vanilla lays out its widgets, adds the button at the
  * top-right of the container panel and registers a {@link ContainerListener} so the button
@@ -57,8 +57,9 @@ public abstract class AbstractContainerScreenMixin extends Screen {
 		if (!LogStripperConfig.get().enabled) {
 			return;
 		}
-		// The creative inventory has its own tab layout and server-side semantics; skip it.
-		if ((Object) this instanceof CreativeModeInventoryScreen) {
+		// Only the standard survival inventory gets the button - not chests, other containers,
+		// or the creative screen (which is not an InventoryScreen).
+		if (!((Object) this instanceof InventoryScreen)) {
 			return;
 		}
 		Minecraft minecraft = Minecraft.getInstance();

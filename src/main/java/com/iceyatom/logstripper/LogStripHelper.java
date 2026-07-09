@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantments;
 
 /**
  * All scanning, conversion, and durability logic for the strip operation (Section 7.3).
@@ -99,6 +100,20 @@ public final class LogStripHelper {
 		return stack.getMaxDamage() - stack.getDamageValue();
 	}
 
+	/**
+	 * Level of the Unbreaking enchantment on the stack, or 0 if absent. Used only to phrase the
+	 * tooltip preview: with Unbreaking, durability is consumed probabilistically, so the raw
+	 * remaining-uses count is a guaranteed floor rather than an exact strip count.
+	 */
+	public static int unbreakingLevel(ItemStack stack) {
+		for (var entry : stack.getEnchantments().entrySet()) {
+			if (entry.getKey().is(Enchantments.UNBREAKING)) {
+				return entry.getIntValue();
+			}
+		}
+		return 0;
+	}
+
 	/** Total count of strippable logs across slots 0-35 (used for FR-02/FR-03). */
 	public static int countStrippableLogs(Inventory inventory) {
 		int total = 0;
@@ -141,11 +156,15 @@ public final class LogStripHelper {
 		Inventory inventory = player.getInventory();
 		// FR-15: creative mode or an unbreakable axe converts everything with no durability cost.
 		boolean free = player.hasInfiniteMaterials() || !axe.isDamageableItem();
+		// When set, stop before spending the axe's final durability point so it is never
+		// consumed (config preserve_axe). Only meaningful for a damageable axe being charged.
+		boolean preserveAxe = config.preserveAxe && !free;
 
 		int convertedTotal = 0;
 		boolean broke = false;
+		boolean stop = false;
 
-		for (int slot = 0; slot < SCAN_SLOTS && !broke; slot++) {
+		for (int slot = 0; slot < SCAN_SLOTS && !stop; slot++) {
 			ItemStack stack = inventory.getItem(slot);
 			if (stack.isEmpty()) {
 				continue;
@@ -167,10 +186,16 @@ public final class LogStripHelper {
 				// FR-11: one vanilla per-use damage roll per log, so Unbreaking behaves
 				// exactly as it would right-clicking placed logs.
 				for (int i = 0; i < count; i++) {
+					// Leave the axe on its last durability point rather than breaking it.
+					if (preserveAxe && remainingUses(axe) <= 1) {
+						stop = true;
+						break;
+					}
 					axe.hurtAndBreak(1, level, player, item -> onAxeBroken(player, axeRef));
 					convertible++;
 					if (axe.isEmpty()) {
 						broke = true; // FR-14: stop at the point of breakage
+						stop = true;
 						break;
 					}
 				}

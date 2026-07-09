@@ -20,6 +20,7 @@ public final class LogStripperConfig {
 
 	public boolean enabled = true;
 	public AxeSelectionStrategy axeSelectionStrategy = AxeSelectionStrategy.MAIN_HAND_FIRST;
+	public boolean preserveAxe = true;
 	public boolean showTooltipPreview = true;
 	public boolean playSoundOnComplete = true;
 	public boolean highlightChangedSlots = true;
@@ -69,6 +70,7 @@ public final class LogStripperConfig {
 				case "enabled" -> enabled = Boolean.parseBoolean(value);
 				case "axe_selection_strategy" ->
 						axeSelectionStrategy = AxeSelectionStrategy.valueOf(value.toUpperCase(Locale.ROOT));
+				case "preserve_axe" -> preserveAxe = Boolean.parseBoolean(value);
 				case "show_tooltip_preview" -> showTooltipPreview = Boolean.parseBoolean(value);
 				case "play_sound_on_complete" -> playSoundOnComplete = Boolean.parseBoolean(value);
 				case "highlight_changed_slots" -> highlightChangedSlots = Boolean.parseBoolean(value);
@@ -90,6 +92,9 @@ public final class LogStripperConfig {
 				"",
 				"# MAIN_HAND_FIRST | HIGHEST_DURABILITY - which axe is chosen when more than one is available.",
 				"axe_selection_strategy = \"MAIN_HAND_FIRST\"",
+				"",
+				"# Stop before spending the axe's final durability point so it is never broken by stripping.",
+				"preserve_axe = true",
 				"",
 				"# Show the pre-click outcome tooltip.",
 				"show_tooltip_preview = true",

@@ -3,7 +3,7 @@
   "package": "com.iceyatom.logstripper.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
-    "AxeItemAccessor"
+    "MatchingBlocksPredicateAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

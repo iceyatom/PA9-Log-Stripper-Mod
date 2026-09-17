@@ -1,62 +1,52 @@
-[19:10:25] [main/INFO] (FabricLoader/GameProvider) Loading Minecraft 26.2 with Fabric Loader 0.19.3
-[19:10:25] [main/INFO] (FabricLoader/Mappings) Mappings not present!
-[19:10:25] [main/INFO] (FabricLoader) Loading 51 mods:
-	- fabric-api 0.154.2+26.2
-	- fabric-api-base 2.0.4+ece063239e
-	- fabric-api-lookup-api-v1 2.0.17+11e1c9a39e
-	- fabric-biome-api-v1 18.0.6+c7bd5b8e9e
-	- fabric-block-api-v1 3.0.3+ec56b6019e
-	- fabric-block-getter-api-v2 2.0.7+ec56b6019e
-	- fabric-client-gametest-api-v1 5.1.1+37925be69e
-	- fabric-command-api-v2 3.1.0+00cb03469e
-	- fabric-content-registries-v0 11.2.2+b7a678a99e
-	- fabric-convention-tags-v2 4.7.0+1f023a9e9e
-	- fabric-crash-report-info-v1 1.0.5+086d547a9e
-	- fabric-creative-tab-api-v1 5.0.14+d871b99e9e
-	- fabric-data-attachment-api-v1 2.2.17+aa0fd6fe9e
-	- fabric-data-generation-api-v1 25.4.4+9e7dc27f9e
-	- fabric-debug-api-v1 1.0.2+c792624d9e
-	- fabric-dimensions-v1 5.1.9+9cbf5da59e
-	- fabric-entity-events-v1 5.0.5+06488ac19e
-	- fabric-events-interaction-v0 5.2.6+8f57f7ee9e
-	- fabric-game-rule-api-v1 4.0.8+46a6d00c9e
-	- fabric-gametest-api-v1 4.0.21+4a7fa0819e
-	- fabric-item-api-v1 14.2.0+7aec7be39e
-	- fabric-key-mapping-api-v1 2.0.5+e2bdee789e
-	- fabric-lifecycle-events-v1 4.1.3+4575b05f9e
-	- fabric-loot-api-v3 3.0.17+06488ac19e
-	- fabric-menu-api-v1 2.0.16+086d547a9e
-	- fabric-message-api-v1 7.0.7+086d547a9e
-	- fabric-model-loading-api-v1 8.0.15+c80601bb9e
-	- fabric-networking-api-v1 6.3.3+72073ef09e
-	- fabric-object-builder-api-v1 24.1.0+6fcd5f039e
-	- fabric-particles-v1 5.0.18+d1756aa99e
-	- fabric-permission-api-v1 1.0.3+b7020ca29e
-	- fabric-recipe-api-v1 9.0.20+11e1c9a39e
-	- fabric-registry-sync-v0 7.1.0+c7bd5b8e9e
-	- fabric-renderer-api-v1 14.1.2+2b0d8a229e
-	- fabric-renderer-indigo 9.1.2+2b0d8a229e
-	- fabric-rendering-fluids-v1 6.0.4+06488ac19e
-	- fabric-rendering-v1 25.3.1+6988455e9e
-	- fabric-resource-conditions-api-v1 6.1.0+10e9a28b9e
-	- fabric-resource-loader-v0 3.3.20+4fc5413f9e
-	- fabric-resource-loader-v1 2.0.13+9edec1269e
-	- fabric-screen-api-v1 5.1.0+48e3c0b09e
-	- fabric-serialization-api-v1 2.0.4+11a26f319e
-	- fabric-sound-api-v1 2.0.5+11a26f319e
-	- fabric-tag-api-v1 2.1.3+794df31d9e
-	- fabric-transfer-api-v1 8.0.11+39b5a3929e
-	- fabric-transitive-access-wideners-v1 8.1.4+67c847259e
-	- fabricloader 0.19.3
+[22:26:38] [main/INFO] (FabricLoader/GameProvider) Loading Minecraft 26.3 with Fabric Loader 0.19.5
+[22:26:38] [main/INFO] (FabricLoader/Mappings) Mappings not present!
+[22:26:38] [main/INFO] (FabricLoader) Loading 43 mods:
+	- fabric-api 0.160.6+26.3
+	- fabric-api-base 2.0.6+fcdff87f5d
+	- fabric-api-lookup-api-v1 2.0.24+3434d6d95d
+	- fabric-biome-api-v1 20.0.9+74ed1ea55d
+	- fabric-block-api-v1 3.1.0+0ae6f9115d
+	- fabric-block-getter-api-v2 2.0.9+3434d6d95d
+	- fabric-command-api-v2 3.1.2+fcdff87f5d
+	- fabric-content-registries-v0 15.0.4+74ed1ea55d
+	- fabric-convention-tags-v2 4.10.2+5a4e5fc65d
+	- fabric-crash-report-info-v1 1.0.7+fcdff87f5d
+	- fabric-creative-tab-api-v1 5.0.21+fcdff87f5d
+	- fabric-data-attachment-api-v1 2.2.30+3434d6d95d
+	- fabric-data-generation-api-v1 27.2.2+b28e9d205d
+	- fabric-debug-api-v1 1.0.4+3434d6d95d
+	- fabric-dimensions-v1 5.1.19+47f74c985d
+	- fabric-entity-events-v1 6.0.4+3434d6d95d
+	- fabric-events-interaction-v0 5.3.6+3434d6d95d
+	- fabric-game-rule-api-v1 4.0.10+3434d6d95d
+	- fabric-gametest-api-v1 4.0.32+3434d6d95d
+	- fabric-item-api-v1 14.7.0+cf6bc2db5d
+	- fabric-lifecycle-events-v1 4.1.9+ffef5f675d
+	- fabric-loot-api-v3 4.0.8+4068fd645d
+	- fabric-menu-api-v1 2.0.27+ed66f0a35d
+	- fabric-message-api-v1 7.0.10+3434d6d95d
+	- fabric-networking-api-v1 6.3.8+fcdff87f5d
+	- fabric-object-builder-api-v1 24.1.9+3434d6d95d
+	- fabric-particles-v1 5.0.24+3434d6d95d
+	- fabric-permission-api-v1 1.0.8+fcdff87f5d
+	- fabric-recipe-api-v1 10.0.8+fcdff87f5d
+	- fabric-registry-sync-v0 8.0.1+fcdff87f5d
+	- fabric-rendering-fluids-v1 6.0.6+3434d6d95d
+	- fabric-resource-conditions-api-v1 6.1.5+3434d6d95d
+	- fabric-resource-loader-v0 3.3.26+4fc5413f5d
+	- fabric-resource-loader-v1 3.0.4+fcdff87f5d
+	- fabric-serialization-api-v1 2.0.7+74ed1ea55d
+	- fabric-tag-api-v1 2.1.10+fcdff87f5d
+	- fabric-transfer-api-v1 8.0.25+fcdff87f5d
+	- fabric-transitive-access-wideners-v1 8.1.16+52268a0e5d
+	- fabricloader 0.19.5
 	- java 25
 	- logstripper 1.0.0
-	- minecraft 26.2
-	- mixinextras 0.5.4
-[19:10:25] [main/INFO] (FabricLoader/Mixin) SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/C:/Users/Jonathan/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.17.3+mixin.0.8.7/41c4a3984a80f4679e759fb9f495587acc5cdac7/sponge-mixin-0.17.3+mixin.0.8.7.jar Service=Knot/Fabric Env=CLIENT
-[19:10:26] [main/INFO] (FabricLoader/Mixin) Compatibility level set to JAVA_25
-[19:10:27] [main/INFO] (FabricLoader/MixinExtras|Service) Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.4).
-[19:10:28] [Datafixer Bootstrap #0/INFO] (Minecraft) 295 Datafixer optimizations took 253 milliseconds
-[19:10:28] [main/ERROR] (HkeyPerformanceDataUtil) Unable to locate English counter names in registry Perflib 009. Counters may need to be rebuilt: 
+	- minecraft 26.3
+	- mixinextras 0.5.5
+[22:26:38] [main/INFO] (FabricLoader/Mixin) SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/C:/Users/Jonathan/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.17.4+mixin.0.8.7/5f66cc9f59b8efaa942155a3d5a30599bf6640dd/sponge-mixin-0.17.4+mixin.0.8.7.jar Service=Knot/Fabric Env=SERVER
+[22:26:39] [main/INFO] (FabricLoader/MixinExtras|Service) Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
+[22:26:39] [main/ERROR] (HkeyPerformanceDataUtil) Unable to locate English counter names in registry Perflib 009. Counters may need to be rebuilt: 
 com.sun.jna.platform.win32.Win32Exception: The parameter is incorrect.
 	at knot//com.sun.jna.platform.win32.Advapi32Util.registryGetStringArray(Advapi32Util.java:921)
 	at knot//com.sun.jna.platform.win32.Advapi32Util.registryGetStringArray(Advapi32Util.java:898)
@@ -76,13 +66,13 @@ com.sun.jna.platform.win32.Win32Exception: The parameter is incorrect.
 	at knot//net.minecraft.SystemReport.<init>(SystemReport.java:68)
 	at knot//net.minecraft.CrashReport.<init>(CrashReport.java:35)
 	at knot//net.minecraft.CrashReport.preload(CrashReport.java:252)
-	at knot//net.minecraft.client.main.Main.main(Main.java:172)
-	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:514)
+	at knot//net.minecraft.server.Main.main(Main.java:104)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:517)
 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
-	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+	at net.fabricmc.loader.impl.launch.knot.KnotServer.main(KnotServer.java:23)
 	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
-[19:10:28] [main/WARN] (PerfCounterQuery) Unable to locate English counter names in registry Perflib 009. Assuming English counters. Error 0x80070057. See https://support.microsoft.com/en-us/help/300956/how-to-manually-rebuild-performance-counter-library-values
-[19:10:28] [main/WARN] (Minecraft) Failed to get system info for Process Loads
+[22:26:39] [main/WARN] (PerfCounterQuery) Unable to locate English counter names in registry Perflib 009. Assuming English counters. Error 0x80070057. See https://support.microsoft.com/en-us/help/300956/how-to-manually-rebuild-performance-counter-library-values
+[22:26:40] [main/WARN] (Minecraft) Failed to get system info for Process Loads
 java.lang.NullPointerException: Cannot invoke "oshi.software.os.OSProcess.getUserTime()" because "process" is null
 	at knot//net.minecraft.SystemReport.lambda$putProcessDetails$0(SystemReport.java:190)
 	at knot//net.minecraft.SystemReport.setDetail(SystemReport.java:96)
@@ -95,12 +85,12 @@ java.lang.NullPointerException: Cannot invoke "oshi.software.os.OSProcess.getUse
 	at knot//net.minecraft.SystemReport.<init>(SystemReport.java:68)
 	at knot//net.minecraft.CrashReport.<init>(CrashReport.java:35)
 	at knot//net.minecraft.CrashReport.preload(CrashReport.java:252)
-	at knot//net.minecraft.client.main.Main.main(Main.java:172)
-	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:514)
+	at knot//net.minecraft.server.Main.main(Main.java:104)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:517)
 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
-	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+	at net.fabricmc.loader.impl.launch.knot.KnotServer.main(KnotServer.java:23)
 	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
-[19:10:28] [main/WARN] (Minecraft) Failed to get system info for Process Virtual Size (MiB)
+[22:26:40] [main/WARN] (Minecraft) Failed to get system info for Process Virtual Size (MiB)
 java.lang.NullPointerException: Cannot invoke "oshi.software.os.OSProcess.getVirtualSize()" because "process" is null
 	at knot//net.minecraft.SystemReport.lambda$putProcessDetails$1(SystemReport.java:202)
 	at knot//net.minecraft.SystemReport.setDetail(SystemReport.java:96)
@@ -113,12 +103,12 @@ java.lang.NullPointerException: Cannot invoke "oshi.software.os.OSProcess.getVir
 	at knot//net.minecraft.SystemReport.<init>(SystemReport.java:68)
 	at knot//net.minecraft.CrashReport.<init>(CrashReport.java:35)
 	at knot//net.minecraft.CrashReport.preload(CrashReport.java:252)
-	at knot//net.minecraft.client.main.Main.main(Main.java:172)
-	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:514)
+	at knot//net.minecraft.server.Main.main(Main.java:104)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:517)
 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
-	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+	at net.fabricmc.loader.impl.launch.knot.KnotServer.main(KnotServer.java:23)
 	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
-[19:10:28] [main/WARN] (Minecraft) Failed to get system info for Process Resident Size (MiB)
+[22:26:40] [main/WARN] (Minecraft) Failed to get system info for Process Resident Size (MiB)
 java.lang.NullPointerException: Cannot invoke "oshi.software.os.OSProcess.getResidentSetSize()" because "process" is null
 	at knot//net.minecraft.SystemReport.lambda$putProcessDetails$2(SystemReport.java:203)
 	at knot//net.minecraft.SystemReport.setDetail(SystemReport.java:96)
@@ -131,61 +121,37 @@ java.lang.NullPointerException: Cannot invoke "oshi.software.os.OSProcess.getRes
 	at knot//net.minecraft.SystemReport.<init>(SystemReport.java:68)
 	at knot//net.minecraft.CrashReport.<init>(CrashReport.java:35)
 	at knot//net.minecraft.CrashReport.preload(CrashReport.java:252)
-	at knot//net.minecraft.client.main.Main.main(Main.java:172)
-	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:514)
+	at knot//net.minecraft.server.Main.main(Main.java:104)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:517)
 	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:72)
-	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+	at net.fabricmc.loader.impl.launch.knot.KnotServer.main(KnotServer.java:23)
 	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86)
-[19:10:33] [Render thread/INFO] (Minecraft) Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
-[19:10:33] [Render thread/INFO] (Minecraft) Setting user: Player775
-[19:10:33] [Render thread/INFO] (logstripper) LogStripper registered 23 strippable log pairs
-[19:10:33] [Render thread/INFO] (logstripper) LogStripper initialized
-[19:10:33] [Render thread/INFO] (Indigo) [Indigo] Registering Indigo renderer!
-[19:10:33] [Download-2/ERROR] (Minecraft) Failed to fetch user properties
-com.mojang.authlib.exceptions.InvalidCredentialsException: Status: 401
-	at knot//com.mojang.authlib.exceptions.MinecraftClientHttpException.toAuthenticationException(MinecraftClientHttpException.java:70)
-	at knot//com.mojang.authlib.yggdrasil.YggdrasilUserApiService.fetchProperties(YggdrasilUserApiService.java:173)
-	at knot//net.minecraft.client.Minecraft.lambda$new$1(Minecraft.java:438)
-	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1789)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
-	at java.base/java.lang.Thread.run(Thread.java:1474)
-Caused by: MinecraftClientHttpException[type=HTTP_ERROR, status=401, response=ErrorResponse[path=/player/attributes, error=null, errorMessage=null, details=null]]
-	at knot//com.mojang.authlib.minecraft.client.MinecraftClient.buildHttpException(MinecraftClient.java:170)
-	at knot//com.mojang.authlib.minecraft.client.MinecraftClient.readServiceResponse(MinecraftClient.java:147)
-	at knot//com.mojang.authlib.minecraft.client.MinecraftClient.getWithEtag(MinecraftClient.java:81)
-	at knot//com.mojang.authlib.minecraft.client.MinecraftClient.get(MinecraftClient.java:65)
-	at knot//com.mojang.authlib.yggdrasil.YggdrasilUserApiService.fetchProperties(YggdrasilUserApiService.java:123)
-	... 5 more
-[19:10:33] [Render thread/INFO] (Minecraft) Backend library: LWJGL version 3.4.1-snapshot
-[19:10:34] [Render thread/INFO] (Minecraft) Using graphics backend OpenGL, using drivers: 3.3.0 NVIDIA 591.86
-[19:10:34] [Render thread/INFO] (Minecraft) Using graphics device: NVIDIA GeForce RTX 4070/PCIe/SSE2 (NVIDIA Corporation)
-[19:10:34] [Render thread/INFO] (Minecraft) Using graphics device extensions: GL_ARB_multi_draw_indirect, GL_ARB_buffer_storage, GL_ARB_shader_draw_parameters, GL_ARB_base_instance, GL_KHR_debug, GL_ARB_draw_indirect, GL_ARB_clip_control, GL_ARB_vertex_attrib_binding, GL_ARB_direct_state_access, GL_EXT_texture_filter_anisotropic
-[19:10:34] [Download-1/INFO] (Minecraft) Could not authorize you against Realms server: java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC
-[19:10:34] [Download-1/ERROR] (Minecraft) Failed to fetch Realms feature flags
-com.mojang.realmsclient.exception.RealmsServiceException: Realms authentication error with message 'java.lang.RuntimeException: Failed to parse into SignedJWT: FabricMC'
-	at knot//com.mojang.realmsclient.client.RealmsClient.execute(RealmsClient.java:528)
-	at knot//com.mojang.realmsclient.client.RealmsClient.fetchFeatureFlags(RealmsClient.java:187)
-	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1789)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
-	at java.base/java.lang.Thread.run(Thread.java:1474)
-[19:10:34] [Render thread/INFO] (Minecraft) Reloading ResourceManager: vanilla, fabric-api, fabric-api-base, fabric-api-lookup-api-v1, fabric-biome-api-v1, fabric-block-api-v1, fabric-block-getter-api-v2, fabric-client-gametest-api-v1, fabric-command-api-v2, fabric-content-registries-v0, fabric-convention-tags-v2, fabric-crash-report-info-v1, fabric-creative-tab-api-v1, fabric-data-attachment-api-v1, fabric-data-generation-api-v1, fabric-debug-api-v1, fabric-dimensions-v1, fabric-entity-events-v1, fabric-events-interaction-v0, fabric-game-rule-api-v1, fabric-gametest-api-v1, fabric-item-api-v1, fabric-key-mapping-api-v1, fabric-lifecycle-events-v1, fabric-loot-api-v3, fabric-menu-api-v1, fabric-message-api-v1, fabric-model-loading-api-v1, fabric-networking-api-v1, fabric-object-builder-api-v1, fabric-particles-v1, fabric-permission-api-v1, fabric-recipe-api-v1, fabric-registry-sync-v0, fabric-renderer-api-v1, fabric-renderer-indigo, fabric-rendering-fluids-v1, fabric-rendering-v1, fabric-resource-conditions-api-v1, fabric-resource-loader-v0, fabric-resource-loader-v1, fabric-screen-api-v1, fabric-serialization-api-v1, fabric-sound-api-v1, fabric-tag-api-v1, fabric-transfer-api-v1, fabric-transitive-access-wideners-v1, fabricloader, logstripper
-[19:10:35] [Worker-Main-13/INFO] (Minecraft) Found unifont_all_no_pua-17.0.01.hex, loading
-[19:10:35] [Worker-Main-16/INFO] (Minecraft) Found unifont_pua-17.0.01.hex, loading
-[19:10:35] [Worker-Main-19/INFO] (Minecraft) Found unifont_jp_patch-17.0.01.hex, loading
-[19:10:37] [Render thread/INFO] (Minecraft) OpenAL initialized on device OpenAL Soft on Headphones (W-KING T11)
-[19:10:37] [Render thread/INFO] (Minecraft) Sound engine started
-[19:10:37] [Render thread/INFO] (Minecraft) Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
-[19:10:37] [Render thread/INFO] (Minecraft) Created: 128x128x0 minecraft:textures/atlas/decorated_pot.png-atlas
-[19:10:37] [Render thread/INFO] (Minecraft) Created: 2048x1024x0 minecraft:textures/atlas/armor_trims.png-atlas
-[19:10:37] [Render thread/INFO] (Minecraft) Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
-[19:10:37] [Render thread/INFO] (Minecraft) Created: 1024x512x0 minecraft:textures/atlas/shield_patterns.png-atlas
-[19:10:37] [Render thread/INFO] (Minecraft) Created: 2048x2048x4 minecraft:textures/atlas/blocks.png-atlas
-[19:10:37] [Render thread/INFO] (Minecraft) Created: 512x512x0 minecraft:textures/atlas/chest.png-atlas
-[19:10:37] [Render thread/INFO] (Minecraft) Created: 256x128x0 minecraft:textures/atlas/celestials.png-atlas
-[19:10:37] [Render thread/INFO] (Minecraft) Created: 1024x512x0 minecraft:textures/atlas/banner_patterns.png-atlas
-[19:10:37] [Render thread/INFO] (Minecraft) Created: 1024x512x0 minecraft:textures/atlas/items.png-atlas
-[19:10:37] [Render thread/INFO] (Minecraft) Created: 1024x1024x0 minecraft:textures/atlas/gui.png-atlas
-[19:10:37] [Render thread/INFO] (Minecraft) Created: 128x64x0 minecraft:textures/atlas/map_decorations.png-atlas
-[19:10:37] [Render thread/INFO] (Minecraft) Created: 512x512x0 minecraft:textures/atlas/shulker_boxes.png-atlas
+[22:26:43] [main/INFO] (logstripper) LogStripper initialized
+[22:26:43] [main/INFO] (Minecraft) Environment: Environment[discoveryUrl=https://discovery.minecraftservices.com/minecraft/client, name=PROD]
+[22:26:44] [Worker-Main-21/INFO] (Minecraft) No existing world data, creating new world
+[22:26:44] [Worker-Main-4/INFO] (Minecraft) Loaded 1866 advancements
+[22:26:45] [main/INFO] (BiomeModificationImpl) Applied 0 biome modifications to 0 of 67 new biomes in 1.139 ms
+[22:26:45] [Server thread/INFO] (Minecraft) Starting minecraft server version 26.3
+[22:26:45] [Server thread/INFO] (Minecraft) Loading properties
+[22:26:45] [Server thread/INFO] (Minecraft) Default game type: SURVIVAL
+[22:26:45] [Server thread/INFO] (Minecraft) Generating keypair
+[22:26:45] [Server thread/INFO] (Minecraft) Starting Minecraft server on *:25565
+[22:26:45] [Server thread/INFO] (Minecraft) Preparing level "world"
+[22:26:45] [Server thread/INFO] (Minecraft) Selecting global world spawn...
+[22:26:47] [Server thread/INFO] (Minecraft) Loading 0 persistent chunks...
+[22:26:47] [Server thread/INFO] (Minecraft) Preparing spawn area: 100%
+[22:26:47] [Server thread/INFO] (Minecraft) Time elapsed: 1932 ms
+[22:26:47] [Server thread/INFO] (Minecraft) Done (2.149s)! For help, type "help"
+[22:26:47] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[22:26:47] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+[22:26:47] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+[22:26:47] [Server thread/INFO] (logstripper) LogStripper registered 25 strippable log pairs
+[22:26:47] [Server thread/INFO] (Minecraft) System chat: An unexpected error occurred while trying to execute that command
+[22:27:47] [Server thread/INFO] (Minecraft) Server empty for 60 seconds, pausing
+[22:30:36] [Server thread/INFO] (Minecraft) System chat: Stopping the server
+[22:30:36] [Server thread/INFO] (Minecraft) Stopping server
+[22:30:36] [Server thread/INFO] (Minecraft) Saving players
+[22:30:36] [Server thread/INFO] (Minecraft) Saving worlds
+[22:30:36] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[22:30:36] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+[22:30:36] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether

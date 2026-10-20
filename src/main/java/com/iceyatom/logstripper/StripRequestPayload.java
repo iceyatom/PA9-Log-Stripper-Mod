@@ -1,26 +1,16 @@
 package com.iceyatom.logstripper;
 
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 
 /**
  * C2S request to run one strip operation. Deliberately carries no fields (FR-08): the server
  * re-derives the axe and target stacks from the player's actual inventory, so the client can
- * never dictate the outcome.
+ * never dictate the outcome. 1.19.x Fabric API has no packet objects, so the request is an
+ * empty packet on this channel id.
  */
-public record StripRequestPayload() implements CustomPacketPayload {
-	public static final StripRequestPayload INSTANCE = new StripRequestPayload();
+public final class StripRequestPayload {
+	public static final ResourceLocation ID = new ResourceLocation(LogStripper.MOD_ID, "strip_request");
 
-	public static final CustomPacketPayload.Type<StripRequestPayload> TYPE =
-			new CustomPacketPayload.Type<>(Identifier.fromNamespaceAndPath(LogStripper.MOD_ID, "strip_request"));
-
-	public static final StreamCodec<RegistryFriendlyByteBuf, StripRequestPayload> CODEC =
-			StreamCodec.unit(INSTANCE);
-
-	@Override
-	public CustomPacketPayload.Type<StripRequestPayload> type() {
-		return TYPE;
+	private StripRequestPayload() {
 	}
 }

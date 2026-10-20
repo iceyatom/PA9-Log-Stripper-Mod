@@ -19,3 +19,6 @@ run/
 # OS junk
 .DS_Store
 Thumbs.db
+
+# Built release jars (made by build-jar.bat)
+releases/

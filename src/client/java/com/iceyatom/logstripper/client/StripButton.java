@@ -4,7 +4,7 @@ import com.iceyatom.logstripper.LogStripHelper;
 import com.iceyatom.logstripper.LogStripperConfig;
 import com.iceyatom.logstripper.StripRequestPayload;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
@@ -18,7 +18,7 @@ import net.minecraft.world.item.Items;
 /**
  * The 16x16 strip button. Instead of a static sprite it draws the axe item that would actually
  * be used (FR-05 selection), so the icon reflects the chosen tool - stone, iron, diamond, etc.
- * Rendering goes through the standard {@link GuiGraphicsExtractor#item} path, which keeps it safe
+ * Rendering goes through the standard {@link GuiGraphics#renderItem} path, which keeps it safe
  * under both the OpenGL and Vulkan backends. State is re-evaluated from slot-update events via
  * {@link #refreshState()} (FR-04/NFR-02), not by polling every frame.
  */
@@ -51,17 +51,17 @@ public class StripButton extends AbstractButton {
 	}
 
 	@Override
-	protected void extractContents(GuiGraphicsExtractor extractor, int mouseX, int mouseY, float partialTick) {
+	protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
 		int x = getX();
 		int y = getY();
 		// Subtle highlight behind the icon on hover, only when the button can actually act.
 		if (isHovered() && this.active) {
-			extractor.fill(x - 1, y - 1, x + SIZE + 1, y + SIZE + 1, 0x40FFFFFF);
+			graphics.fill(x - 1, y - 1, x + SIZE + 1, y + SIZE + 1, 0x40FFFFFF);
 		}
-		extractor.item(iconStack, x, y);
+		graphics.renderItem(iconStack, x, y);
 		// Dim the icon when there is no axe or nothing to strip.
 		if (!this.active) {
-			extractor.fill(x, y, x + SIZE, y + SIZE, 0x99000000);
+			graphics.fill(x, y, x + SIZE, y + SIZE, 0x99000000);
 		}
 	}
 

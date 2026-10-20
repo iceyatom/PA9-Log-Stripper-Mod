@@ -15,7 +15,7 @@ public class LogStripper implements ModInitializer {
 		LogStripperConfig.load();
 		StrippableRegistry.bootstrap();
 
-		PayloadTypeRegistry.serverboundPlay().register(StripRequestPayload.TYPE, StripRequestPayload.CODEC);
+		PayloadTypeRegistry.playC2S().register(StripRequestPayload.TYPE, StripRequestPayload.CODEC);
 		// SYNC-01: the entire operation resolves here on the logical server; Fabric invokes
 		// this handler on the server thread.
 		ServerPlayNetworking.registerGlobalReceiver(StripRequestPayload.TYPE,

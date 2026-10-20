@@ -1,5 +1,5 @@
 plugins {
-	id 'net.fabricmc.fabric-loom' version "${loom_version}"
+	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
 }
 
 version = project.mod_version
@@ -26,8 +26,11 @@ loom {
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
-	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	// 1.20.x jars are obfuscated, so Loom remaps them. Official Mojang mappings keep the source
+	// on the same Mojmap names as the 26.x branches; the jar is remapped to intermediary on build.
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
 
 processResources {
@@ -39,17 +42,24 @@ processResources {
 	}
 }
 
+// Minecraft 1.20-1.20.4 targets Java 17. The build runs on the installed JDK 25; `release = 17` makes
+// javac emit Java 17 bytecode and reject any API newer than Java 17.
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 25
+	it.options.release = 17
 }
 
 java {
-	sourceCompatibility = JavaVersion.VERSION_25
-	targetCompatibility = JavaVersion.VERSION_25
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
 }
 
+// The pre-remap jar is a dev-only intermediate; the remapped jar is the release.
 jar {
 	from("LICENSE")
+	archiveClassifier = "dev"
+}
+
+remapJar {
 	// Naming convention: "logstripper - <minecraft version> - <mod version>.jar"
 	archiveFileName = "logstripper - ${project.minecraft_version} - ${project.mod_version}.jar"
 }

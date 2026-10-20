@@ -1,33 +1,23 @@
 package com.iceyatom.logstripper;
 
-import com.iceyatom.logstripper.mixin.MatchingBlocksPredicateAccessor;
+import com.iceyatom.logstripper.mixin.AxeItemAccessor;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.component.BlockTransformer;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.component.BlockTransformers;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.levelgen.blockpredicates.MatchingBlocksPredicate;
-import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.stateproviders.CopyPropertiesProvider;
-import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider;
-import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Item-level log -> stripped-log mapping (FR-13). Seeded from vanilla's data-driven
- * {@code minecraft:axe} block transformer (strip entries only, block level), which also picks
- * up entries datapacks or other mods have added there. That data lives in a synced dynamic
- * registry, so the mapping is (re)built whenever registries become available: on server start,
- * after a datapack reload, and on the client when joining a world. Other mods can additionally
- * register pairs directly via {@link #register} without touching LogStripHelper internals (NFR-11).
+ * Item-level log -> stripped-log mapping (FR-13). Seeded from vanilla {@code AxeItem.STRIPPABLES}
+ * (block level; 1.21.x has no data-driven {@code minecraft:axe} block transformer), which also
+ * picks up entries other mods have added there. The mapping is (re)built at the same points as
+ * the 26.3 build: on server start, after a datapack reload, and on the client when joining a
+ * world. Other mods can additionally register pairs directly via {@link #register} without
+ * touching LogStripHelper internals (NFR-11).
  */
 public final class StrippableRegistry {
 	/** Pairs registered through the public API; always layered over the vanilla-derived pairs. */
@@ -45,41 +35,22 @@ public final class StrippableRegistry {
 		});
 	}
 
-	/** Converts vanilla's axe strip transformer (block level) into the item mapping. */
+	/**
+	 * Converts vanilla's axe strip mapping (block level) into the item mapping. {@code registries}
+	 * is unused on 1.21.x (the mapping is static there) but kept so call sites match the 26.3 build.
+	 */
 	public static synchronized void rebuild(RegistryAccess registries) {
 		Map<Item, Item> built = new LinkedHashMap<>();
-		registries.lookupOrThrow(Registries.BLOCK_TRANSFORMER).get(BlockTransformers.AXE).ifPresent(axe -> {
-			for (BlockTransformer.BlockTransformData data : axe.value().transforms()) {
-				// The axe transformer also scrapes and de-waxes copper; keep only stripping.
-				if (!data.sound().is(SoundEvents.AXE_STRIP.key())
-						|| !(data.blockStateProvider().value() instanceof RuleBasedStateProvider rules)) {
-					continue;
-				}
-				for (RuleBasedStateProvider.Rule rule : rules.rules()) {
-					Block stripped = targetBlock(rule.then().value());
-					if (stripped == null || !(rule.ifTrue() instanceof MatchingBlocksPredicate matching)) {
-						continue;
-					}
-					Item strippedItem = stripped.asItem();
-					for (Holder<Block> log : ((MatchingBlocksPredicateAccessor) matching).logstripper$getBlocks()) {
-						Item logItem = log.value().asItem();
-						if (logItem != Items.AIR && strippedItem != Items.AIR) {
-							built.putIfAbsent(logItem, strippedItem);
-						}
-					}
-				}
+		for (Map.Entry<Block, Block> entry : AxeItemAccessor.logstripper$getStrippables().entrySet()) {
+			Item logItem = entry.getKey().asItem();
+			Item strippedItem = entry.getValue().asItem();
+			if (logItem != Items.AIR && strippedItem != Items.AIR) {
+				built.putIfAbsent(logItem, strippedItem);
 			}
-		});
+		}
 		built.putAll(EXTRA);
 		strippables = built;
 		LogStripper.LOGGER.info("LogStripper registered {} strippable log pairs", built.size());
-	}
-
-	private static Block targetBlock(BlockStateProvider provider) {
-		if (provider instanceof CopyPropertiesProvider copy) {
-			provider = copy.source().value();
-		}
-		return provider instanceof SimpleStateProvider simple ? simple.state().getBlock() : null;
 	}
 
 	/**

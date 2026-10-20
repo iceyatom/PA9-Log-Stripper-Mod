@@ -4,11 +4,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.util.Prediction;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -73,7 +73,7 @@ public final class LogStripHelper {
 		}
 
 		Inventory inventory = player.getInventory();
-		int selected = inventory.getSelectedSlot();
+		int selected = inventory.selected;
 		for (int slot = 0; slot < SCAN_SLOTS; slot++) {
 			if (slot == selected) {
 				continue; // already considered as main hand
@@ -94,7 +94,8 @@ public final class LogStripHelper {
 	}
 
 	public static boolean isUsableAxe(ItemStack stack) {
-		return !stack.isEmpty() && stack.is(ItemTags.AXES) && remainingUses(stack) > 0;
+		// 1.19.x has no minecraft:axes item tag; AxeItem is the class vanilla strips logs with.
+		return !stack.isEmpty() && stack.getItem() instanceof AxeItem && remainingUses(stack) > 0;
 	}
 
 	/** Remaining durability uses; Integer.MAX_VALUE for undamageable (unbreakable) axes. */
@@ -165,10 +166,10 @@ public final class LogStripHelper {
 		}
 
 		ItemStack axe = axeRef.stack();
-		ServerLevel level = player.level();
+		ServerLevel level = player.getLevel();
 		Inventory inventory = player.getInventory();
 		// FR-15: creative mode or an unbreakable axe converts everything with no durability cost.
-		boolean free = player.hasInfiniteMaterials() || !axe.isDamageableItem();
+		boolean free = player.getAbilities().instabuild || !axe.isDamageableItem();
 		// When set, stop before spending the axe's final durability point so it is never
 		// consumed (config preserve_axe). Only meaningful for a damageable axe being charged.
 		boolean preserveAxe = config.preserveAxe && !free;
@@ -204,7 +205,13 @@ public final class LogStripHelper {
 						stop = true;
 						break;
 					}
-					axe.hurtAndBreak(1, level, player, brokenStack -> onAxeBroken(player, axeRef, brokenStack));
+					// 1.19.x equivalent of 26.x hurtAndBreak(amount, level, player, Consumer<Item>):
+					// same per-use Unbreaking roll; on break, remove the stack and report the item.
+					if (axe.hurt(1, player.getRandom(), player)) {
+						Item brokenItem = axe.getItem();
+						axe.shrink(1);
+						onAxeBroken(player, axeRef, brokenItem);
+					}
 					convertible++;
 					if (axe.isEmpty()) {
 						broke = true; // FR-14: stop at the point of breakage
@@ -275,21 +282,28 @@ public final class LogStripHelper {
 		}
 
 		if (remaining > 0) {
-			player.drop(new ItemStack(stripped, remaining), false, Prediction.SERVER_ONLY);
+			player.drop(new ItemStack(stripped, remaining), false);
 		}
 	}
 
 	/**
-	 * FR-14: vanilla {@code hurtAndBreak} has already removed the stack and fired the break
-	 * event by the time this runs; equipment slots additionally get the vanilla break
-	 * animation/sound, and inventory axes get the item-break sound.
+	 * FR-14: the broken stack has already been removed by the time this runs; equipment slots
+	 * additionally get the vanilla break animation/sound, and inventory axes get the
+	 * item-break sound.
 	 */
-	private static void onAxeBroken(ServerPlayer player, AxeRef axeRef, ItemStack brokenStack) {
+	private static void onAxeBroken(ServerPlayer player, AxeRef axeRef, Item brokenItem) {
 		switch (axeRef.location()) {
-			case MAIN_HAND -> player.onEquippedItemBroken(brokenStack, EquipmentSlot.MAINHAND);
-			case OFF_HAND -> player.onEquippedItemBroken(brokenStack, EquipmentSlot.OFFHAND);
-			case INVENTORY -> player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
-					SoundEvents.ITEM_BREAK.value(), SoundSource.PLAYERS, 0.8F, 0.8F + player.getRandom().nextFloat() * 0.4F);
+			// 1.19.x equivalent of Player.onEquippedItemBroken(item, slot).
+			case MAIN_HAND -> {
+				player.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+				player.awardStat(Stats.ITEM_BROKEN.get(brokenItem));
+			}
+			case OFF_HAND -> {
+				player.broadcastBreakEvent(EquipmentSlot.OFFHAND);
+				player.awardStat(Stats.ITEM_BROKEN.get(brokenItem));
+			}
+			case INVENTORY -> player.getLevel().playSound(null, player.getX(), player.getY(), player.getZ(),
+					SoundEvents.ITEM_BREAK, SoundSource.PLAYERS, 0.8F, 0.8F + player.getRandom().nextFloat() * 0.4F);
 		}
 	}
 

@@ -1,9 +1,9 @@
 {
   "required": true,
   "package": "com.iceyatom.logstripper.mixin",
-  "compatibilityLevel": "JAVA_25",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "MatchingBlocksPredicateAccessor"
+    "AxeItemAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

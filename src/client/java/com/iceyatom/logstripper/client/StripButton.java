@@ -3,12 +3,13 @@ package com.iceyatom.logstripper.client;
 import com.iceyatom.logstripper.LogStripHelper;
 import com.iceyatom.logstripper.LogStripperConfig;
 import com.iceyatom.logstripper.StripRequestPayload;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
-import net.minecraft.client.input.InputWithModifiers;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -18,8 +19,8 @@ import net.minecraft.world.item.Items;
 /**
  * The 16x16 strip button. Instead of a static sprite it draws the axe item that would actually
  * be used (FR-05 selection), so the icon reflects the chosen tool - stone, iron, diamond, etc.
- * Rendering goes through the standard {@link GuiGraphicsExtractor#item} path, which keeps it safe
- * under both the OpenGL and Vulkan backends. State is re-evaluated from slot-update events via
+ * Rendering goes through the standard {@code ItemRenderer.renderAndDecorateItem} path (1.19.x has
+ * no {@code GuiGraphics}). State is re-evaluated from slot-update events via
  * {@link #refreshState()} (FR-04/NFR-02), not by polling every frame.
  */
 public class StripButton extends AbstractButton {
@@ -41,7 +42,7 @@ public class StripButton extends AbstractButton {
 	}
 
 	@Override
-	public void onPress(InputWithModifiers input) {
+	public void onPress() {
 		sendStripRequest();
 	}
 
@@ -51,17 +52,17 @@ public class StripButton extends AbstractButton {
 	}
 
 	@Override
-	protected void extractContents(GuiGraphicsExtractor extractor, int mouseX, int mouseY, float partialTick) {
+	public void renderWidget(PoseStack poseStack, int mouseX, int mouseY, float partialTick) {
 		int x = getX();
 		int y = getY();
 		// Subtle highlight behind the icon on hover, only when the button can actually act.
 		if (isHovered() && this.active) {
-			extractor.fill(x - 1, y - 1, x + SIZE + 1, y + SIZE + 1, 0x40FFFFFF);
+			GuiComponent.fill(poseStack, x - 1, y - 1, x + SIZE + 1, y + SIZE + 1, 0x40FFFFFF);
 		}
-		extractor.item(iconStack, x, y);
+		Minecraft.getInstance().getItemRenderer().renderAndDecorateItem(poseStack, iconStack, x, y);
 		// Dim the icon when there is no axe or nothing to strip.
 		if (!this.active) {
-			extractor.fill(x, y, x + SIZE, y + SIZE, 0x99000000);
+			GuiComponent.fill(poseStack, x, y, x + SIZE, y + SIZE, 0x99000000);
 		}
 	}
 
@@ -102,15 +103,23 @@ public class StripButton extends AbstractButton {
 		// Target axe, then one row per log type in the order they will be stripped.
 		MutableComponent tooltip = Component.translatable("logstripper.tooltip.title")
 				.append(Component.literal("\n"))
-				.append(Component.translatable("logstripper.tooltip.axe", axe.stack().getItemName()));
+				.append(Component.translatable("logstripper.tooltip.axe", itemName(axe.stack())));
 		for (LogStripHelper.LogGroup group : LogStripHelper.strippableBreakdown(player.getInventory())) {
 			ItemStack representative = new ItemStack(group.item());
 			tooltip.append(Component.literal("\n"))
 					.append(Component.translatable("logstripper.tooltip.log_row",
-							representative.getItemName(),
+							itemName(representative),
 							Component.literal(formatCount(group.count(), representative.getMaxStackSize()))));
 		}
 		setTooltip(Tooltip.create(tooltip));
+	}
+
+	/**
+	 * 1.19.x equivalent of 26.x {@code ItemStack.getItemName()}: the item's own name,
+	 * ignoring any custom anvil name (1.19.x has no {@code item_name} component).
+	 */
+	private static Component itemName(ItemStack stack) {
+		return stack.getItem().getName(stack);
 	}
 
 	/** Formats a count as a stack breakdown, e.g. 178 with stack size 64 -> "2 * 64 + 50 (178)". */

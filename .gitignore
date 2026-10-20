@@ -1,0 +1,21 @@
+# Gradle caches and build output
+.gradle/
+build/
+out/
+bin/
+
+# Dev client/server game directory (worlds, logs, options)
+run/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+.nb-gradle/
+
+# OS junk
+.DS_Store
+Thumbs.db
